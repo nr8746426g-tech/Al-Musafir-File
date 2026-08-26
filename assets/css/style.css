@@ -119,6 +119,7 @@ input, select, textarea {
     font-weight: 400;
 }
 input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: 1px; }
+input[readonly] { background: #eef2f5; color: #5c6b78; }
 
 .inspection-input-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
 .inspection-input-table th, .inspection-input-table td { border: 1px solid var(--border); padding: 8px; }

@@ -7,8 +7,8 @@
 function contract_fields(): array
 {
     return [
-        // Header
-        'contract_no'   => ['type' => 'text', 'required' => true],
+        // Header. contract_no is server-generated (see save.php) — not user input.
+        'contract_no'   => ['type' => 'text'],
         'contract_date' => ['type' => 'date', 'required' => true],
         'place'         => ['type' => 'text'],
         'duration'      => ['type' => 'text'],

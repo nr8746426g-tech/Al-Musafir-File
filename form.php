@@ -73,8 +73,12 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
         <fieldset>
             <legend>بيانات العقد / Contract Details</legend>
             <div class="grid grid-4">
-                <label>رقم العقد / Contract No <span class="req">*</span>
-                    <input type="text" name="contract_no" value="<?= val($values, 'contract_no') ?>" required>
+                <label>رقم العقد / Contract No
+                    <?php if ($id): ?>
+                        <input type="text" value="<?= val($values, 'contract_no') ?>" readonly>
+                    <?php else: ?>
+                        <input type="text" value="سيتولد تلقائيًا بعد الحفظ / auto-generated on save" readonly>
+                    <?php endif; ?>
                 </label>
                 <label>التاريخ / Date <span class="req">*</span>
                     <input type="date" name="contract_date" value="<?= val($values, 'contract_date') ?>" required>

@@ -18,6 +18,11 @@ $errors = [];
 $clean = [];
 
 foreach ($fields as $name => $spec) {
+    // contract_no is server-generated (see below), never taken from the form.
+    if ($name === 'contract_no') {
+        continue;
+    }
+
     $raw = isset($_POST[$name]) ? trim((string) $_POST[$name]) : '';
 
     if ($raw === '') {
@@ -92,7 +97,11 @@ if ($errors) {
     exit;
 }
 
-$columns = array_keys($fields);
+// contract_no is never edited once assigned, so it's excluded from the
+// UPDATE column list; for a new contract it doesn't exist yet (it needs
+// the row's own id), so it's excluded from the INSERT too and filled in
+// right after via the id MySQL just assigned.
+$columns = array_diff(array_keys($fields), ['contract_no']);
 
 try {
     $pdo = get_db();
@@ -108,12 +117,12 @@ try {
         $stmt = $pdo->prepare("INSERT INTO contracts ($colSql) VALUES ($placeholders)");
         $stmt->execute($clean);
         $id = (int) $pdo->lastInsertId();
+
+        $contractNo = 'AM-' . date('Y') . '-' . str_pad((string) $id, 4, '0', STR_PAD_LEFT);
+        $pdo->prepare('UPDATE contracts SET contract_no = ? WHERE id = ?')->execute([$contractNo, $id]);
     }
 } catch (PDOException $e) {
-    $message = str_contains($e->getMessage(), 'uq_contract_no')
-        ? 'رقم العقد هذا مستخدم مسبقًا / This contract number is already in use.'
-        : 'تعذر حفظ العقد، حاول مجددًا / Could not save the contract, please try again.';
-    $_SESSION['form_errors'] = [$message];
+    $_SESSION['form_errors'] = ['تعذر حفظ العقد، حاول مجددًا / Could not save the contract, please try again.'];
     $_SESSION['form_values'] = $_POST;
     header('Location: form.php' . ($id ? '?id=' . $id : ''));
     exit;
