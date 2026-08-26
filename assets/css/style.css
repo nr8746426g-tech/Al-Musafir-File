@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --navy: #16324f;
+    --navy-dark: #0f2338;
+    --gold: #b58a3d;
+    --border: #c9d2da;
+    --bg: #f4f6f8;
+    --text: #1f2a33;
+    --danger: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cairo', 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+a { color: var(--navy); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+
+/* ---------- Header / nav (form, list, home pages) ---------- */
+.site-header {
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.site-header .brand { display: flex; flex-direction: column; }
+.site-header .brand-ar { font-weight: 700; font-size: 1.15rem; }
+.site-header .brand-en { font-size: 0.85rem; opacity: 0.85; }
+.site-header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-inline-start: 18px;
+    font-size: 0.95rem;
+}
+.site-header nav a:hover { text-decoration: underline; }
+
+.site-footer {
+    text-align: center;
+    color: #6b7a86;
+    font-size: 0.85rem;
+    padding: 20px;
+}
+
+/* ---------- Home page ---------- */
+.home-hero { text-align: center; padding-top: 60px; }
+.home-hero h1 { font-size: 2rem; color: var(--navy-dark); }
+.home-hero h1 .en { font-size: 1.2rem; color: #4a5a68; }
+.home-actions { display: flex; gap: 16px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-dark); }
+.btn-secondary { background: #e4e9ee; color: var(--text); }
+.btn-secondary:hover { background: #d5dce2; }
+.btn-lg { padding: 14px 28px; font-size: 1.05rem; }
+
+/* ---------- Alerts ---------- */
+.alert { padding: 14px 18px; border-radius: 6px; margin-bottom: 20px; }
+.alert-error { background: #fbeaea; border: 1px solid #f0c2bf; color: var(--danger); }
+.alert-error ul { margin: 8px 0 0; padding-inline-start: 20px; }
+
+/* ---------- Form page ---------- */
+.contract-form fieldset {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    background: #fff;
+}
+.contract-form legend {
+    font-weight: 700;
+    color: var(--navy);
+    padding: 0 8px;
+}
+.contract-form .hint { color: #5c6b78; font-size: 0.9rem; margin: 4px 0 12px; }
+.req { color: var(--danger); }
+
+.grid { display: grid; gap: 14px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 800px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+label { display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem; font-weight: 600; color: #364854; }
+input, select, textarea {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--text);
+    font-weight: 400;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: 1px; }
+
+.inspection-input-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.inspection-input-table th, .inspection-input-table td { border: 1px solid var(--border); padding: 8px; }
+.inspection-input-table input { width: 100%; }
+
+.form-actions { display: flex; gap: 12px; margin-top: 10px; }
+
+/* ---------- List page ---------- */
+.search-form { display: flex; gap: 10px; margin: 16px 0 24px; }
+.search-form input { flex: 1; max-width: 480px; }
+.table-scroll { overflow-x: auto; }
+.list-table { width: 100%; border-collapse: collapse; background: #fff; }
+.list-table th, .list-table td { border: 1px solid var(--border); padding: 10px; text-align: start; font-size: 0.92rem; }
+.list-table thead th { background: var(--navy); color: #fff; }
+.list-table .actions { display: flex; gap: 12px; flex-wrap: wrap; white-space: nowrap; }
+.inline-form { display: inline; }
+.link-danger { background: none; border: none; color: var(--danger); cursor: pointer; font: inherit; padding: 0; text-decoration: underline; }
+
+/* =========================================================
+   Printable contract sheet (view.php) — mirrors the original
+   Al Musafir Car Rental Agreement PDF layout.
+   ========================================================= */
+.toolbar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+}
+.toolbar a { color: var(--navy); text-decoration: none; }
+.toolbar a:hover { text-decoration: underline; }
+
+.contract-sheet {
+    max-width: 900px;
+    margin: 24px auto 60px;
+    background: #fff;
+    padding: 40px 48px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.contract-header { text-align: center; margin-bottom: 20px; }
+.contract-header h1 { color: var(--navy-dark); margin: 0 0 4px; font-size: 1.9rem; }
+.contract-header h2 { margin: 0 0 10px; font-weight: 600; color: #4a5a68; font-size: 1.2rem; }
+.contract-header .note { font-size: 0.82rem; color: #7a8894; }
+
+.info-table, .vehicle-table, .inspection-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+.info-table td, .vehicle-table th, .vehicle-table td, .inspection-table th, .inspection-table td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    font-size: 0.92rem;
+}
+.info-table .lbl { background: #eef2f5; font-weight: 700; width: 22%; }
+.vehicle-table th, .inspection-table th { background: var(--navy); color: #fff; font-weight: 600; }
+
+.intro { font-size: 0.9rem; color: #4a5a68; text-align: center; margin: 20px 0; }
+
+.clause { margin: 22px 0; break-inside: avoid; }
+.clause h3 {
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0 0 10px;
+}
+.clause p { margin: 6px 0; font-size: 0.94rem; }
+.clause .soft { border: none; border-top: 1px dashed var(--border); margin: 12px 0; }
+
+.bilingual-list { list-style: none; padding: 0; margin: 0; }
+.bilingual-list li { display: flex; justify-content: space-between; gap: 24px; padding: 6px 0; border-bottom: 1px dashed var(--border); font-size: 0.94rem; }
+.bilingual-list li:last-child { border-bottom: none; }
+.bilingual-list li span:first-child { flex: 1; text-align: left; }
+.bilingual-list li span:last-child { flex: 1; text-align: right; }
+
+.blank { display: inline-block; min-width: 90px; border-bottom: 1px solid #444; }
+.filled { font-weight: 700; color: var(--navy-dark); }
+.sig-line { min-width: 160px; height: 1.4em; }
+
+.signatures { margin-top: 30px; break-inside: avoid; }
+.sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
+.sig-block h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 10px; }
+.sig-block p { margin: 10px 0; font-size: 0.92rem; }
+
+/* ---------- Print ---------- */
+@media print {
+    .no-print, .toolbar, .site-header, .site-footer { display: none !important; }
+    body { background: #fff; }
+    .contract-sheet { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+    .clause, .signatures, .vehicle-table, .inspection-table { break-inside: avoid; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
