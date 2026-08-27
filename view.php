@@ -71,7 +71,7 @@ if (!$c) {
         </tr>
     </table>
 
-    <p class="intro" dir="ltr">
+    <p class="intro intro-bold" dir="ltr">
         <span class="en">Both parties, being of full legal capacity to contract, have agreed as follows:</span>
         <span class="ar">ويقرّ الطرفان بأهليتهما للتعاقد، وقد اتفقا على ما يلي:</span>
     </p>
@@ -83,7 +83,7 @@ if (!$c) {
         <tbody>
             <tr>
                 <td class="en">
-                    <strong>Article 1</strong><br>
+                    <strong class="art-title">Article 1</strong><br>
                     The First Party has rented from the Second Party the following vehicle:<br>
                     Vehicle type: <?= pv($c, 'veh_type') ?><br>
                     Plate number: <?= pv($c, 'veh_plate_no') ?><br>
@@ -93,7 +93,7 @@ if (!$c) {
                     Allowed mileage: <?= pv($c, 'allowed_mileage_km') ?> km per day; any excess is charged at QAR 0.5 per km.
                 </td>
                 <td class="ar">
-                    <strong>البند الأول</strong><br>
+                    <strong class="art-title">البند الأول</strong><br>
                     استأجر الطرف الأول من الطرف الثاني السيارة التالية:<br>
                     نوع المركبة: <?= pv($c, 'veh_type') ?><br>
                     رقم اللوحة: <?= pv($c, 'veh_plate_no') ?><br>
@@ -105,13 +105,13 @@ if (!$c) {
             </tr>
             <tr>
                 <td class="en">
-                    <strong>Article 2</strong><br>
+                    <strong class="art-title">Article 2</strong><br>
                     Rental period: <?= pv($c, 'rental_days') ?> day(s). Rent paid: QAR <?= pv($c, 'rent_paid') ?><br>
                     From <?= ptime($c, 'rental_start_time') ?> until <?= ptime($c, 'rental_end_time') ?> of <?= pdate($c, 'rental_start_date') ?><br>
                     The agreement ends on <?= pdate($c, 'rental_end_date') ?> at the close of the final hour.
                 </td>
                 <td class="ar">
-                    <strong>البند الثاني</strong><br>
+                    <strong class="art-title">البند الثاني</strong><br>
                     مدة الإيجار: <?= pv($c, 'rental_days') ?> يوم. المبلغ المدفوع: <?= pv($c, 'rent_paid') ?> ريال قطري.<br>
                     تبدأ من الساعة <?= ptime($c, 'rental_start_time') ?> حتى الساعة <?= ptime($c, 'rental_end_time') ?> من يوم <?= pdate($c, 'rental_start_date') ?><br>
                     وينتهي العقد بتاريخ <?= pdate($c, 'rental_end_date') ?> عند انتهاء الساعة الأخيرة.
@@ -119,43 +119,43 @@ if (!$c) {
             </tr>
             <tr>
                 <td class="en">
-                    <strong>Article 3</strong><br>
+                    <strong class="art-title">Article 3</strong><br>
                     This agreement may only be renewed by a new agreement.<br>
                     Security deposit paid: QAR <?= pv($c, 'security_deposit') ?>
                 </td>
                 <td class="ar">
-                    <strong>البند الثالث</strong><br>
+                    <strong class="art-title">البند الثالث</strong><br>
                     لا يُجدَّد هذا العقد إلا بعقد آخر.<br>
                     مبلغ التأمين المدفوع: <?= pv($c, 'security_deposit') ?> ريال قطري.
                 </td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 4</strong><br>The First Party acknowledges receipt of the rented vehicle at the agreed time and bears full responsibility for it from the start of the rental until its end (accidents, violations).</td>
-                <td class="ar"><strong>البند الرابع</strong><br>يقرّ الطرف الأول بأنه تسلّم السيارة المؤجَّرة في الوقت المحدد للإيجار، وهو مسؤول عنها اعتباراً من بداية الإيجار حتى نهايته (حوادث، مخالفات).</td>
+                <td class="en"><strong class="art-title">Article 4</strong><br>The First Party acknowledges receipt of the rented vehicle at the agreed time and bears full responsibility for it from the start of the rental until its end (accidents, violations).</td>
+                <td class="ar"><strong class="art-title">البند الرابع</strong><br>يقرّ الطرف الأول بأنه تسلّم السيارة المؤجَّرة في الوقت المحدد للإيجار، وهو مسؤول عنها اعتباراً من بداية الإيجار حتى نهايته (حوادث، مخالفات).</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 5</strong><br>The vehicle must be returned in the same condition it was received, on the date specified at the end of the rental term.</td>
-                <td class="ar"><strong>البند الخامس</strong><br>تُرجَع السيارة كما استُلمت، وفي اليوم المحدد لنهاية مدة الإيجار.</td>
+                <td class="en"><strong class="art-title">Article 5</strong><br>The vehicle must be returned in the same condition it was received, on the date specified at the end of the rental term.</td>
+                <td class="ar"><strong class="art-title">البند الخامس</strong><br>تُرجَع السيارة كما استُلمت، وفي اليوم المحدد لنهاية مدة الإيجار.</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 6</strong><br>Traffic violations must be settled by the day following their issuance; any delay in payment voids this agreement.</td>
-                <td class="ar"><strong>البند السادس</strong><br>تُسدَّد المخالفات في ثاني يوم من تاريخ المخالفة، وأي تأخّر في التسديد يُلغى العقد.</td>
+                <td class="en"><strong class="art-title">Article 6</strong><br>Traffic violations must be settled by the day following their issuance; any delay in payment voids this agreement.</td>
+                <td class="ar"><strong class="art-title">البند السادس</strong><br>تُسدَّد المخالفات في ثاني يوم من تاريخ المخالفة، وأي تأخّر في التسديد يُلغى العقد.</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 7</strong><br>Accidents are the driver's responsibility.</td>
-                <td class="ar"><strong>البند السابع</strong><br>الحوادث تحت مسؤولية السائق.</td>
+                <td class="en"><strong class="art-title">Article 7</strong><br>Accidents are the driver's responsibility.</td>
+                <td class="ar"><strong class="art-title">البند السابع</strong><br>الحوادث تحت مسؤولية السائق.</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 8</strong><br>A penalty of QAR 100 per day applies for any delay in returning the vehicle or renewing the agreement.</td>
-                <td class="ar"><strong>البند الثامن</strong><br>غرامة التأخير عن تسليم السيارة أو تجديد العقد 100 ريال قطري لليوم الواحد.</td>
+                <td class="en"><strong class="art-title">Article 8</strong><br>A penalty of QAR 100 per day applies for any delay in returning the vehicle or renewing the agreement.</td>
+                <td class="ar"><strong class="art-title">البند الثامن</strong><br>غرامة التأخير عن تسليم السيارة أو تجديد العقد 100 ريال قطري لليوم الواحد.</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 9</strong><br>The lessee is obligated to return the vehicle in the same condition in which it was received.</td>
-                <td class="ar"><strong>البند التاسع</strong><br>المستأجر مُلزَم بتسليم السيارة على نفس الحالة التي استلمها بها.</td>
+                <td class="en"><strong class="art-title">Article 9</strong><br>The lessee is obligated to return the vehicle in the same condition in which it was received.</td>
+                <td class="ar"><strong class="art-title">البند التاسع</strong><br>المستأجر مُلزَم بتسليم السيارة على نفس الحالة التي استلمها بها.</td>
             </tr>
             <tr>
-                <td class="en"><strong>Article 10</strong><br>The First Party shall pay QAR 500 plus the cost of the vehicle's downtime during repair.</td>
-                <td class="ar"><strong>البند العاشر</strong><br>يقوم الطرف الأول بدفع 500 ريال قطري + قيمة أيام توقّف السيارة أثناء التصليح.</td>
+                <td class="en"><strong class="art-title">Article 10</strong><br>The First Party shall pay QAR 500 plus the cost of the vehicle's downtime during repair.</td>
+                <td class="ar"><strong class="art-title">البند العاشر</strong><br>يقوم الطرف الأول بدفع 500 ريال قطري + قيمة أيام توقّف السيارة أثناء التصليح.</td>
             </tr>
         </tbody>
     </table>
