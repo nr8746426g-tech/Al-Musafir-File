@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
 
 :root {
-    --navy: #16324f;
-    --navy-dark: #0f2338;
+    --navy: #0b3391;
+    --navy-dark: #082569;
     --gold: #b58a3d;
     --border: #c9d2da;
     --bg: #f4f6f8;
@@ -164,58 +164,63 @@ input[readonly] { background: #eef2f5; color: #5c6b78; }
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-.contract-header { text-align: center; margin-bottom: 20px; }
-.contract-header h1 { color: var(--navy-dark); margin: 0 0 4px; font-size: 1.9rem; }
-.contract-header h2 { margin: 0 0 10px; font-weight: 600; color: #4a5a68; font-size: 1.2rem; }
-.contract-header .note { font-size: 0.82rem; color: #7a8894; }
+.logo-header, .logo-footer { display: block; width: 100%; height: auto; }
+.logo-header { margin-bottom: 10px; }
+.logo-footer { margin-top: 20px; }
 
-.info-table, .vehicle-table, .inspection-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-}
-.info-table td, .vehicle-table th, .vehicle-table td, .inspection-table th, .inspection-table td {
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    font-size: 0.92rem;
-}
-.info-table .lbl { background: #eef2f5; font-weight: 700; width: 22%; }
-.vehicle-table th, .inspection-table th { background: var(--navy); color: #fff; font-weight: 600; }
-
-.intro { font-size: 0.9rem; color: #4a5a68; text-align: center; margin: 20px 0; }
-
-.clause { margin: 22px 0; break-inside: avoid; }
-.clause h3 {
+.title-bar {
     background: var(--navy);
     color: #fff;
-    padding: 8px 14px;
-    border-radius: 4px;
-    font-size: 1rem;
-    margin: 0 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
 }
-.clause p { margin: 6px 0; font-size: 0.94rem; }
-.clause .soft { border: none; border-top: 1px dashed var(--border); margin: 12px 0; }
+.title-bar .en { text-transform: uppercase; }
 
-.bilingual-list { list-style: none; padding: 0; margin: 0; }
-.bilingual-list li { display: flex; justify-content: space-between; gap: 24px; padding: 6px 0; border-bottom: 1px dashed var(--border); font-size: 0.94rem; }
-.bilingual-list li:last-child { border-bottom: none; }
-.bilingual-list li span:first-child { flex: 1; text-align: left; }
-.bilingual-list li span:last-child { flex: 1; text-align: right; }
+.intro { font-size: 0.88rem; color: #4a5a68; margin: 14px 0; display: flex; justify-content: space-between; gap: 20px; }
+.intro .en { text-align: left; }
+.intro .ar { text-align: right; }
+
+.party-table, .articles-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    table-layout: fixed;
+}
+.party-table td, .party-table th, .articles-table td, .articles-table th {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    vertical-align: top;
+    line-height: 1.65;
+}
+.party-table th, .articles-table thead th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    text-align: start;
+}
+.party-table td.en, .articles-table td.en { text-align: left; direction: ltr; }
+.party-table td.ar, .articles-table td.ar { text-align: right; direction: rtl; }
+.articles-table td strong, .articles-table td u { display: inline-block; margin-bottom: 4px; }
 
 .blank { display: inline-block; min-width: 90px; border-bottom: 1px solid #444; }
 .filled { font-weight: 700; color: var(--navy-dark); }
-.sig-line { min-width: 160px; height: 1.4em; }
 
-.signatures { margin-top: 30px; break-inside: avoid; }
-.sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
-.sig-block h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 10px; }
-.sig-block p { margin: 10px 0; font-size: 0.92rem; }
+.sig-row { display: flex; justify-content: space-between; margin-top: 40px; gap: 30px; break-inside: avoid; }
+.sig-block { flex: 1; text-align: center; }
+.sig-block .label { font-weight: 700; margin-bottom: 40px; display: block; }
+.sig-block .sig-line { display: block; border-top: 1px solid #444; margin-top: 4px; }
 
 /* ---------- Print ---------- */
 @media print {
     .no-print, .toolbar, .site-header, .site-footer { display: none !important; }
     body { background: #fff; }
     .contract-sheet { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
-    .clause, .signatures, .vehicle-table, .inspection-table { break-inside: avoid; }
+    .party-table, .articles-table tr, .sig-row { break-inside: avoid; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }

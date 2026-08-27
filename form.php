@@ -71,271 +71,100 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
         <?php endif; ?>
 
         <fieldset>
-            <legend>بيانات العقد / Contract Details</legend>
-            <div class="grid grid-4">
-                <label>رقم العقد / Contract No
+            <legend>رقم العقد / Contract No.</legend>
+            <div class="grid grid-2">
+                <label>رقم العقد (للأرشيف الداخلي، لا يظهر على النموذج المطبوع) / Contract No. (internal record, not printed)
                     <?php if ($id): ?>
                         <input type="text" value="<?= val($values, 'contract_no') ?>" readonly>
                     <?php else: ?>
                         <input type="text" value="سيتولد تلقائيًا بعد الحفظ / auto-generated on save" readonly>
                     <?php endif; ?>
                 </label>
-                <label>التاريخ / Date <span class="req">*</span>
-                    <input type="date" name="contract_date" value="<?= val($values, 'contract_date') ?>" required>
-                </label>
-                <label>مكان التحرير / Place
-                    <input type="text" name="place" value="<?= val($values, 'place') ?>">
-                </label>
-                <label>مدة العقد / Duration
-                    <input type="text" name="duration" value="<?= val($values, 'duration') ?>" placeholder="e.g. 7 days">
-                </label>
             </div>
         </fieldset>
 
         <fieldset>
-            <legend>الطرف الأول (المؤجر) / First Party (Lessor)</legend>
-            <p class="hint">المسافر لتأجير السيارات، سجل تجاري رقم 240168 — Al Musafir for Car Rental, commercial reg. no. 240168</p>
-            <div class="grid grid-2">
-                <label>يمثله (الاسم) / Represented by
-                    <input type="text" name="lessor_represented_by" value="<?= val($values, 'lessor_represented_by') ?>">
-                </label>
-                <label>الصفة / Capacity
-                    <input type="text" name="lessor_capacity" value="<?= val($values, 'lessor_capacity') ?>">
-                </label>
-                <label>العنوان / Address
-                    <input type="text" name="lessor_address" value="<?= val($values, 'lessor_address') ?>">
-                </label>
-                <label>الهاتف / Phone
-                    <input type="text" name="lessor_phone" value="<?= val($values, 'lessor_phone') ?>">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>الطرف الثاني (المستأجر) / Second Party (Renter)</legend>
-            <div class="grid grid-2">
+            <legend>الطرف الأول (المستأجر) / First Party (Lessee)</legend>
+            <div class="grid grid-4">
                 <label>الاسم / Name <span class="req">*</span>
-                    <input type="text" name="renter_name" value="<?= val($values, 'renter_name') ?>" required>
+                    <input type="text" name="lessee_name" value="<?= val($values, 'lessee_name') ?>" required>
                 </label>
-                <label>رقم الهوية/الإقامة / ID or residency no.
-                    <input type="text" name="renter_id_no" value="<?= val($values, 'renter_id_no') ?>">
+                <label>الجنسية / Nationality
+                    <input type="text" name="lessee_nationality" value="<?= val($values, 'lessee_nationality') ?>">
                 </label>
-                <label>رقم رخصة القيادة / Licence no.
-                    <input type="text" name="renter_license_no" value="<?= val($values, 'renter_license_no') ?>">
+                <label>رقم البطاقة / الجواز / ID or Passport No.
+                    <input type="text" name="lessee_id_no" value="<?= val($values, 'lessee_id_no') ?>">
                 </label>
-                <label>تاريخ انتهاء الرخصة / Licence expiry
-                    <input type="date" name="renter_license_expiry" value="<?= val($values, 'renter_license_expiry') ?>">
-                </label>
-                <label>العنوان / Address
-                    <input type="text" name="renter_address" value="<?= val($values, 'renter_address') ?>">
-                </label>
-                <label>الهاتف / Phone
-                    <input type="text" name="renter_phone" value="<?= val($values, 'renter_phone') ?>">
+                <label>رقم الهاتف / Phone No.
+                    <input type="text" name="lessee_phone" value="<?= val($values, 'lessee_phone') ?>">
                 </label>
             </div>
+            <p class="hint">الطرف الثاني (المؤجر) ثابت دائمًا: شركة المسافر لتأجير السيارات. / Second Party (Lessor) is always fixed: Al Musafir for Car Rental Company.</p>
         </fieldset>
 
         <fieldset>
-            <legend>بيانات السيارة / Vehicle Details</legend>
+            <legend>البند 1: السيارة / Article 1: Vehicle</legend>
             <div class="grid grid-3">
-                <label>الماركة والموديل / Make &amp; Model
-                    <input type="text" name="veh_make_model" value="<?= val($values, 'veh_make_model') ?>">
+                <label>نوع المركبة / Vehicle Type
+                    <input type="text" name="veh_type" value="<?= val($values, 'veh_type') ?>">
                 </label>
-                <label>سنة الصنع / Year
-                    <input type="text" name="veh_year" value="<?= val($values, 'veh_year') ?>">
+                <label>رقم اللوحة / Plate Number <span class="req">*</span>
+                    <input type="text" name="veh_plate_no" value="<?= val($values, 'veh_plate_no') ?>" required>
                 </label>
                 <label>اللون / Colour
                     <input type="text" name="veh_colour" value="<?= val($values, 'veh_colour') ?>">
                 </label>
-                <label>رقم اللوحة / Plate No. <span class="req">*</span>
-                    <input type="text" name="veh_plate_no" value="<?= val($values, 'veh_plate_no') ?>" required>
-                </label>
-                <label>رقم الهيكل / VIN
-                    <input type="text" name="veh_vin" value="<?= val($values, 'veh_vin') ?>">
-                </label>
-                <label>العداد عند التسليم / Odometer
+                <label>قراءة العداد / Odometer Reading
                     <input type="text" name="veh_odometer" value="<?= val($values, 'veh_odometer') ?>">
                 </label>
+                <label>المقيد / Restricted
+                    <select name="mileage_restricted">
+                        <option value="">—</option>
+                        <option value="yes" <?= sel($values, 'mileage_restricted', 'yes') ?>>نعم / Yes</option>
+                        <option value="no" <?= sel($values, 'mileage_restricted', 'no') ?>>لا / No</option>
+                    </select>
+                </label>
+                <label>المسافة المسموحة (كم/يوم) / Allowed Mileage (km/day)
+                    <input type="number" name="allowed_mileage_km" value="<?= val($values, 'allowed_mileage_km') ?>" placeholder="e.g. 300">
+                </label>
             </div>
+            <p class="hint">أي تجاوز يُحتسب 0.5 ريال قطري لكل كيلومتر (ثابت بالعقد). / Any excess is charged at a fixed QAR 0.5 per km.</p>
         </fieldset>
 
         <fieldset>
-            <legend>البند 1: مدة عقد الإيجار / Clause 1: Rental Period</legend>
-            <div class="grid grid-4">
-                <label>تاريخ البدء / Start date <span class="req">*</span>
+            <legend>البند 2: مدة الإيجار / Article 2: Rental Period</legend>
+            <div class="grid grid-3">
+                <label>عدد الأيام / Days
+                    <input type="number" name="rental_days" value="<?= val($values, 'rental_days') ?>">
+                </label>
+                <label>المبلغ المدفوع (ر.ق) / Rent Paid (QAR)
+                    <input type="number" step="0.01" name="rent_paid" value="<?= val($values, 'rent_paid') ?>">
+                </label>
+                <label></label>
+                <label>تاريخ البداية / Start Date <span class="req">*</span>
                     <input type="date" name="rental_start_date" value="<?= val($values, 'rental_start_date') ?>" required>
                 </label>
-                <label>الساعة / Start time
+                <label>الساعة / Start Time
                     <input type="time" name="rental_start_time" value="<?= val($values, 'rental_start_time') ?>">
                 </label>
-                <label>تاريخ الانتهاء / End date <span class="req">*</span>
+                <label></label>
+                <label>تاريخ الانتهاء / End Date <span class="req">*</span>
                     <input type="date" name="rental_end_date" value="<?= val($values, 'rental_end_date') ?>" required>
                 </label>
-                <label>الساعة / End time
+                <label>الساعة / End Time
                     <input type="time" name="rental_end_time" value="<?= val($values, 'rental_end_time') ?>">
                 </label>
             </div>
         </fieldset>
 
         <fieldset>
-            <legend>البند 2: قيمة الإيجار وطريقة الدفع / Clause 2: Rental Fee &amp; Payment</legend>
-            <div class="grid grid-3">
-                <label>القيمة الإجمالية / Total fee <span class="req">*</span>
-                    <input type="number" step="0.01" name="total_fee" value="<?= val($values, 'total_fee') ?>" required>
-                </label>
-                <label>الضريبة / Tax
-                    <select name="tax_status">
-                        <option value="">—</option>
-                        <option value="incl" <?= sel($values, 'tax_status', 'incl') ?>>شاملة / Incl.</option>
-                        <option value="excl" <?= sel($values, 'tax_status', 'excl') ?>>غير شاملة / Excl.</option>
-                    </select>
-                </label>
-                <label>طريقة الدفع / Payment method
-                    <select name="payment_method">
-                        <option value="">—</option>
-                        <option value="cash" <?= sel($values, 'payment_method', 'cash') ?>>نقدًا / Cash</option>
-                        <option value="card" <?= sel($values, 'payment_method', 'card') ?>>بطاقة بنكية / Card</option>
-                        <option value="transfer" <?= sel($values, 'payment_method', 'transfer') ?>>تحويل / Transfer</option>
-                    </select>
-                </label>
-                <label>الدفعة الأولى / First instalment
-                    <input type="number" step="0.01" name="first_instalment" value="<?= val($values, 'first_instalment') ?>">
-                </label>
-                <label>باقي المبلغ يستحق / Balance due
-                    <input type="text" name="balance_due_note" value="<?= val($values, 'balance_due_note') ?>" placeholder="e.g. on return">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 3: مبلغ التأمين / Clause 3: Security Deposit</legend>
+            <legend>البند 3: مبلغ التأمين / Article 3: Security Deposit</legend>
             <div class="grid grid-2">
-                <label>مبلغ التأمين / Deposit amount
-                    <input type="number" step="0.01" name="deposit_amount" value="<?= val($values, 'deposit_amount') ?>">
-                </label>
-                <label>يُرد خلال (أيام) / Returned within (days)
-                    <input type="number" name="deposit_return_days" value="<?= val($values, 'deposit_return_days') ?>">
+                <label>مبلغ التأمين المدفوع (ر.ق) / Security Deposit Paid (QAR)
+                    <input type="number" step="0.01" name="security_deposit" value="<?= val($values, 'security_deposit') ?>">
                 </label>
             </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 4: حد الكيلومترات / Clause 4: Mileage Limit</legend>
-            <div class="grid grid-2">
-                <label>الحد المسموح (كم/يوم) / Limit (km/day)
-                    <input type="number" name="mileage_limit_km" value="<?= val($values, 'mileage_limit_km') ?>">
-                </label>
-                <label>رسم الكيلومتر الزائد / Extra km charge
-                    <input type="number" step="0.01" name="extra_km_charge" value="<?= val($values, 'extra_km_charge') ?>">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 5: سياسة الوقود / Clause 5: Fuel Policy</legend>
-            <div class="grid grid-2">
-                <label>مستوى الوقود عند التسليم / Fuel level at handover
-                    <input type="text" name="fuel_level" value="<?= val($values, 'fuel_level') ?>" placeholder="e.g. Full / 3/4 / 1/2">
-                </label>
-                <label>رسم خدمة التعبئة / Refuelling service fee
-                    <input type="number" step="0.01" name="fuel_service_fee" value="<?= val($values, 'fuel_service_fee') ?>">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 6: التأمين على السيارة / Clause 6: Vehicle Insurance</legend>
-            <div class="grid grid-3">
-                <label>نوع التأمين / Insurance type
-                    <select name="insurance_type">
-                        <option value="">—</option>
-                        <option value="comprehensive" <?= sel($values, 'insurance_type', 'comprehensive') ?>>شامل / Comprehensive</option>
-                        <option value="third_party" <?= sel($values, 'insurance_type', 'third_party') ?>>ضد الغير / Third-party</option>
-                    </select>
-                </label>
-                <label>شركة التأمين / Insurance company
-                    <input type="text" name="insurance_company" value="<?= val($values, 'insurance_company') ?>">
-                </label>
-                <label>مبلغ التحمل / Deductible
-                    <input type="number" step="0.01" name="deductible_amount" value="<?= val($values, 'deductible_amount') ?>">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 7: غرامة التأخير / Clause 7: Late Return Penalty</legend>
-            <div class="grid grid-2">
-                <label>مبلغ الغرامة / Penalty amount
-                    <input type="number" step="0.01" name="late_penalty_amount" value="<?= val($values, 'late_penalty_amount') ?>">
-                </label>
-                <label>لكل / Per
-                    <select name="late_penalty_unit">
-                        <option value="">—</option>
-                        <option value="hour" <?= sel($values, 'late_penalty_unit', 'hour') ?>>ساعة / Hour</option>
-                        <option value="day" <?= sel($values, 'late_penalty_unit', 'day') ?>>يوم / Day</option>
-                    </select>
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 8: فحص حالة السيارة / Clause 8: Vehicle Condition Inspection</legend>
-            <table class="inspection-input-table">
-                <thead>
-                    <tr>
-                        <th>البند / Item</th>
-                        <th>عند التسليم / At Handover</th>
-                        <th>عند الاستلام / At Return</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                $inspectionItems = [
-                    'body_paint'    => 'الهيكل والطلاء / Body &amp; paint',
-                    'glass_mirrors' => 'الزجاج والمرايا / Glass &amp; mirrors',
-                    'tyres_rims'    => 'الإطارات والجنوط / Tyres &amp; rims',
-                    'lights'        => 'الأضواء / Lights',
-                    'interior'      => 'المقصورة الداخلية / Interior',
-                    'accessories'   => 'الأدوات والملحقات / Accessories &amp; tools',
-                ];
-                foreach ($inspectionItems as $key => $label):
-                ?>
-                    <tr>
-                        <td><?= $label ?></td>
-                        <td><input type="text" name="insp_<?= $key ?>_handover" value="<?= val($values, 'insp_' . $key . '_handover') ?>"></td>
-                        <td><input type="text" name="insp_<?= $key ?>_return" value="<?= val($values, 'insp_' . $key . '_return') ?>"></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </fieldset>
-
-        <fieldset>
-            <legend>البند 9: الإلغاء وإنهاء العقد / Clause 9: Cancellation &amp; Termination</legend>
-            <div class="grid grid-2">
-                <label>مدة الإشعار الكتابي المسبق / Prior written notice period
-                    <input type="text" name="cancellation_notice_period" value="<?= val($values, 'cancellation_notice_period') ?>" placeholder="e.g. 3 days">
-                </label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>التوقيعات / Signatures</legend>
-            <div class="grid grid-4">
-                <label>اسم المؤجر / Lessor name
-                    <input type="text" name="lessor_sign_name" value="<?= val($values, 'lessor_sign_name') ?>">
-                </label>
-                <label>تاريخ توقيع المؤجر / Lessor sign date
-                    <input type="date" name="lessor_sign_date" value="<?= val($values, 'lessor_sign_date') ?>">
-                </label>
-                <label>اسم المستأجر / Renter name
-                    <input type="text" name="renter_sign_name" value="<?= val($values, 'renter_sign_name') ?>">
-                </label>
-                <label>تاريخ توقيع المستأجر / Renter sign date
-                    <input type="date" name="renter_sign_date" value="<?= val($values, 'renter_sign_date') ?>">
-                </label>
-            </div>
-            <p class="hint">التوقيع الفعلي والختم يُضافان يدويًا على النسخة المطبوعة. / The actual signature &amp; stamp are added by hand on the printed copy.</p>
+            <p class="hint">البنود 4 إلى 10 نصوص ثابتة بالعقد ولا تحتاج تعبئة. / Articles 4-10 are fixed contract text and need no input.</p>
         </fieldset>
 
         <div class="form-actions">
@@ -346,7 +175,7 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
 </main>
 
 <footer class="site-footer">
-    <p>Al Musafir for Car Rental — commercial reg. no. 240168</p>
+    <p>Al Musafir for Car Rental — Tel: +974 3330 7747</p>
 </footer>
 </body>
 </html>

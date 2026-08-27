@@ -30,190 +30,148 @@ if (!$c) {
 
 <article class="contract-sheet">
 
-    <header class="contract-header">
-        <h1>عقد تأجير سيارات</h1>
-        <h2>Car Rental Agreement</h2>
-        <p class="note">نموذج عقد قابل للتعبئة — يُرجى إكمال الحقول المشار إليها بخط قبل التوقيع | Fillable template — complete the blank fields before signing</p>
-    </header>
+    <img src="assets/img/logo-header.png" alt="Al Musafir for Car Rental" class="logo-header">
 
-    <table class="info-table">
+    <div class="title-bar" dir="ltr">
+        <span class="en">Car Rental Agreement</span>
+        <span class="ar">عقد إيجار سيارة</span>
+    </div>
+
+    <p class="intro" dir="ltr">
+        <span class="en">This agreement is made between the following parties:</span>
+        <span class="ar">تم تحرير هذا العقد بين كل من:</span>
+    </p>
+
+    <table class="party-table" dir="ltr">
         <tr>
-            <td class="lbl">رقم العقد / Contract No.</td>
-            <td><?= pv($c, 'contract_no') ?></td>
-            <td class="lbl">التاريخ / Date</td>
-            <td><?= pdate($c, 'contract_date') ?></td>
+            <th class="en">First Party (Lessee)</th>
+            <th class="ar">الطرف الأول (المستأجر)</th>
         </tr>
         <tr>
-            <td class="lbl">مكان التحرير / Place</td>
-            <td><?= pv($c, 'place') ?></td>
-            <td class="lbl">مدة العقد / Duration</td>
-            <td><?= pv($c, 'duration') ?></td>
+            <td class="en">
+                Name: <?= pv($c, 'lessee_name') ?><br>
+                Nationality: <?= pv($c, 'lessee_nationality') ?><br>
+                ID / Passport No.: <?= pv($c, 'lessee_id_no') ?><br>
+                Phone No.: <?= pv($c, 'lessee_phone') ?>
+            </td>
+            <td class="ar">
+                الاسم: <?= pv($c, 'lessee_name') ?><br>
+                الجنسية: <?= pv($c, 'lessee_nationality') ?><br>
+                رقم البطاقة / الجواز: <?= pv($c, 'lessee_id_no') ?><br>
+                رقم الهاتف: <?= pv($c, 'lessee_phone') ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="en">Second Party (Lessor)</th>
+            <th class="ar">الطرف الثاني (المؤجر)</th>
+        </tr>
+        <tr>
+            <td class="en"><strong>Al Musafir for Car Rental Company</strong></td>
+            <td class="ar"><strong>شركة المسافر لتأجير السيارات</strong></td>
         </tr>
     </table>
 
-    <p class="intro">
-        The two parties identified below have agreed to enter into this car rental agreement, governed by the terms and conditions set out herein:
-        <br><br>
-        تم الاتفاق والتراضي بين الطرفين الآتي بيانهما على إبرام عقد تأجير سيارة، بموجب الشروط والأحكام الواردة في هذا العقد:
+    <p class="intro" dir="ltr">
+        <span class="en">Both parties, being of full legal capacity to contract, have agreed as follows:</span>
+        <span class="ar">ويقرّ الطرفان بأهليتهما للتعاقد، وقد اتفقا على ما يلي:</span>
     </p>
 
-    <section class="clause">
-        <h3>المتعاقدان / The Parties</h3>
-        <p>
-            <strong>First Party (Lessor):</strong> Al Musafir for Car Rental (Limited Liability Company Owned by One Person), commercial reg. no. 240168, represented by <?= pv($c, 'lessor_represented_by') ?>, capacity <?= pv($c, 'lessor_capacity') ?>, hereinafter the "Lessor".
-            Address: <?= pv($c, 'lessor_address') ?> — Phone: <?= pv($c, 'lessor_phone') ?>
-        </p>
-        <p dir="rtl">
-            <strong>الطرف الأول (المؤجر):</strong> المسافر لتأجير السيارات (شركة ذات مسؤولية محدودة مالكها شخص واحد)، سجل تجاري رقم 240168، يمثله <?= pv($c, 'lessor_represented_by') ?> بصفته <?= pv($c, 'lessor_capacity') ?>، ويشار إليه بـ "المؤجر".
-            العنوان: <?= pv($c, 'lessor_address') ?> — الهاتف: <?= pv($c, 'lessor_phone') ?>
-        </p>
-        <hr class="soft">
-        <p>
-            <strong>Second Party (Renter):</strong> Name <?= pv($c, 'renter_name') ?>, ID/residency no. <?= pv($c, 'renter_id_no') ?>, licence no. <?= pv($c, 'renter_license_no') ?>, expiring <?= pdate($c, 'renter_license_expiry') ?>.
-            Address: <?= pv($c, 'renter_address') ?> — Phone: <?= pv($c, 'renter_phone') ?>, hereinafter the "Renter".
-        </p>
-        <p dir="rtl">
-            <strong>الطرف الثاني (المستأجر):</strong> الاسم <?= pv($c, 'renter_name') ?>، رقم الهوية/الإقامة <?= pv($c, 'renter_id_no') ?>، رخصة القيادة <?= pv($c, 'renter_license_no') ?> وتاريخ انتهائها <?= pdate($c, 'renter_license_expiry') ?>.
-            العنوان: <?= pv($c, 'renter_address') ?> — الهاتف: <?= pv($c, 'renter_phone') ?>، ويشار إليه بـ "المستأجر".
-        </p>
-    </section>
-
-    <table class="vehicle-table">
+    <table class="articles-table" dir="ltr">
         <thead>
-            <tr>
-                <th>الماركة والموديل<br>Make &amp; Model</th>
-                <th>سنة الصنع<br>Year</th>
-                <th>اللون<br>Colour</th>
-                <th>رقم اللوحة<br>Plate No.</th>
-                <th>رقم الهيكل<br>VIN</th>
-                <th>العداد عند التسليم<br>Odometer</th>
-            </tr>
+            <tr><th class="en">English</th><th class="ar">العربية</th></tr>
         </thead>
         <tbody>
             <tr>
-                <td><?= pv($c, 'veh_make_model') ?></td>
-                <td><?= pv($c, 'veh_year') ?></td>
-                <td><?= pv($c, 'veh_colour') ?></td>
-                <td><?= pv($c, 'veh_plate_no') ?></td>
-                <td><?= pv($c, 'veh_vin') ?></td>
-                <td><?= pv($c, 'veh_odometer') ?></td>
+                <td class="en">
+                    <strong>Article 1</strong><br>
+                    The First Party has rented from the Second Party the following vehicle:<br>
+                    Vehicle type: <?= pv($c, 'veh_type') ?><br>
+                    Plate number: <?= pv($c, 'veh_plate_no') ?><br>
+                    Color: <?= pv($c, 'veh_colour') ?><br>
+                    Odometer reading: <?= pv($c, 'veh_odometer') ?><br>
+                    Restricted: <?= penum($c, 'mileage_restricted', 'en') ?><br>
+                    Allowed mileage: <?= pv($c, 'allowed_mileage_km') ?> km per day; any excess is charged at QAR 0.5 per km.
+                </td>
+                <td class="ar">
+                    <strong>البند الأول</strong><br>
+                    استأجر الطرف الأول من الطرف الثاني السيارة التالية:<br>
+                    نوع المركبة: <?= pv($c, 'veh_type') ?><br>
+                    رقم اللوحة: <?= pv($c, 'veh_plate_no') ?><br>
+                    اللون: <?= pv($c, 'veh_colour') ?><br>
+                    قراءة العداد: <?= pv($c, 'veh_odometer') ?><br>
+                    المقيد: <?= penum($c, 'mileage_restricted', 'ar') ?><br>
+                    المسافة المسموحة: <?= pv($c, 'allowed_mileage_km') ?> كيلومتر في اليوم، وإذا تجاوزها يُدفع 0.5 ريال قطري عن كل كيلومتر.
+                </td>
+            </tr>
+            <tr>
+                <td class="en">
+                    <strong>Article 2</strong><br>
+                    Rental period: <?= pv($c, 'rental_days') ?> day(s). Rent paid: QAR <?= pv($c, 'rent_paid') ?><br>
+                    From <?= ptime($c, 'rental_start_time') ?> until <?= ptime($c, 'rental_end_time') ?> of <?= pdate($c, 'rental_start_date') ?><br>
+                    The agreement ends on <?= pdate($c, 'rental_end_date') ?> at the close of the final hour.
+                </td>
+                <td class="ar">
+                    <strong>البند الثاني</strong><br>
+                    مدة الإيجار: <?= pv($c, 'rental_days') ?> يوم. المبلغ المدفوع: <?= pv($c, 'rent_paid') ?> ريال قطري.<br>
+                    تبدأ من الساعة <?= ptime($c, 'rental_start_time') ?> حتى الساعة <?= ptime($c, 'rental_end_time') ?> من يوم <?= pdate($c, 'rental_start_date') ?><br>
+                    وينتهي العقد بتاريخ <?= pdate($c, 'rental_end_date') ?> عند انتهاء الساعة الأخيرة.
+                </td>
+            </tr>
+            <tr>
+                <td class="en">
+                    <strong>Article 3</strong><br>
+                    This agreement may only be renewed by a new agreement.<br>
+                    Security deposit paid: QAR <?= pv($c, 'security_deposit') ?>
+                </td>
+                <td class="ar">
+                    <strong>البند الثالث</strong><br>
+                    لا يُجدَّد هذا العقد إلا بعقد آخر.<br>
+                    مبلغ التأمين المدفوع: <?= pv($c, 'security_deposit') ?> ريال قطري.
+                </td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 4</strong><br>The First Party acknowledges receipt of the rented vehicle at the agreed time and bears full responsibility for it from the start of the rental until its end (accidents, violations).</td>
+                <td class="ar"><strong>البند الرابع</strong><br>يقرّ الطرف الأول بأنه تسلّم السيارة المؤجَّرة في الوقت المحدد للإيجار، وهو مسؤول عنها اعتباراً من بداية الإيجار حتى نهايته (حوادث، مخالفات).</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 5</strong><br>The vehicle must be returned in the same condition it was received, on the date specified at the end of the rental term.</td>
+                <td class="ar"><strong>البند الخامس</strong><br>تُرجَع السيارة كما استُلمت، وفي اليوم المحدد لنهاية مدة الإيجار.</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 6</strong><br>Traffic violations must be settled by the day following their issuance; any delay in payment voids this agreement.</td>
+                <td class="ar"><strong>البند السادس</strong><br>تُسدَّد المخالفات في ثاني يوم من تاريخ المخالفة، وأي تأخّر في التسديد يُلغى العقد.</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 7</strong><br>Accidents are the driver's responsibility.</td>
+                <td class="ar"><strong>البند السابع</strong><br>الحوادث تحت مسؤولية السائق.</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 8</strong><br>A penalty of QAR 100 per day applies for any delay in returning the vehicle or renewing the agreement.</td>
+                <td class="ar"><strong>البند الثامن</strong><br>غرامة التأخير عن تسليم السيارة أو تجديد العقد 100 ريال قطري لليوم الواحد.</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 9</strong><br>The lessee is obligated to return the vehicle in the same condition in which it was received.</td>
+                <td class="ar"><strong>البند التاسع</strong><br>المستأجر مُلزَم بتسليم السيارة على نفس الحالة التي استلمها بها.</td>
+            </tr>
+            <tr>
+                <td class="en"><strong>Article 10</strong><br>The First Party shall pay QAR 500 plus the cost of the vehicle's downtime during repair.</td>
+                <td class="ar"><strong>البند العاشر</strong><br>يقوم الطرف الأول بدفع 500 ريال قطري + قيمة أيام توقّف السيارة أثناء التصليح.</td>
             </tr>
         </tbody>
     </table>
 
-    <section class="clause">
-        <h3>البند 1: مدة عقد الإيجار — Clause 1: Rental Period</h3>
-        <p>The rental period runs from <?= pdate($c, 'rental_start_date') ?> at <?= ptime($c, 'rental_start_time') ?> to <?= pdate($c, 'rental_end_date') ?> at <?= ptime($c, 'rental_end_time') ?>. May be extended by written agreement before it expires.</p>
-        <p dir="rtl">تبدأ مدة الإيجار من تاريخ <?= pdate($c, 'rental_start_date') ?> الساعة <?= ptime($c, 'rental_start_time') ?>، وتنتهي في تاريخ <?= pdate($c, 'rental_end_date') ?> الساعة <?= ptime($c, 'rental_end_time') ?>. يجوز تمديدها بموافقة خطية قبل انتهاء المدة.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 2: قيمة الإيجار وطريقة الدفع — Clause 2: Rental Fee &amp; Payment</h3>
-        <p>Total fee: <?= pv($c, 'total_fee') ?> (<?= penum($c, 'tax_status') ?>). Payment: <?= penum($c, 'payment_method') ?>. First instalment <?= pv($c, 'first_instalment') ?> due on signing; balance due <?= pv($c, 'balance_due_note') ?>.</p>
-        <p dir="rtl">القيمة الإجمالية: <?= pv($c, 'total_fee') ?> (<?= penum($c, 'tax_status') ?>). طريقة الدفع: <?= penum($c, 'payment_method') ?>. دفعة أولى <?= pv($c, 'first_instalment') ?> عند التوقيع، والباقي <?= pv($c, 'balance_due_note') ?>.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 3: مبلغ التأمين (الوديعة) — Clause 3: Security Deposit</h3>
-        <p>A refundable deposit of <?= pv($c, 'deposit_amount') ?> is payable, returned within <?= pv($c, 'deposit_return_days') ?> days of return, after deducting any amounts owed.</p>
-        <p dir="rtl">يدفع المستأجر تأمينًا قابلًا للاسترداد قدره <?= pv($c, 'deposit_amount') ?>، يُرد خلال <?= pv($c, 'deposit_return_days') ?> أيام من الإرجاع، بعد خصم أي مستحقات.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 4: حد الكيلومترات المسموح به — Clause 4: Mileage Limit</h3>
-        <p>Permitted limit <?= pv($c, 'mileage_limit_km') ?> km/day; each extra km charged at <?= pv($c, 'extra_km_charge') ?>.</p>
-        <p dir="rtl">الحد المسموح <?= pv($c, 'mileage_limit_km') ?> كم/يوم، وتُحسب كل كيلومتر زائد بمبلغ <?= pv($c, 'extra_km_charge') ?>.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 5: سياسة الوقود — Clause 5: Fuel Policy</h3>
-        <p>Vehicle handed over with fuel level <?= pv($c, 'fuel_level') ?>, to be returned at the same level. Shortfall charged at refuelling cost plus service fee <?= pv($c, 'fuel_service_fee') ?>.</p>
-        <p dir="rtl">تُسلَّم السيارة بخزان وقود <?= pv($c, 'fuel_level') ?> وتُرجع بنفس المستوى. عند النقص يتحمل المستأجر تكلفة التعبئة إضافة لرسم خدمة <?= pv($c, 'fuel_service_fee') ?>.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 6: التأمين على السيارة — Clause 6: Vehicle Insurance</h3>
-        <p>Vehicle insured (<?= penum($c, 'insurance_type') ?>) with <?= pv($c, 'insurance_company') ?>. Renter liable for a deductible of <?= pv($c, 'deductible_amount') ?> per incident. Insurance excludes damage from Renter negligence or breach of this agreement.</p>
-        <p dir="rtl">السيارة مؤمَّنة (<?= penum($c, 'insurance_type') ?>) لدى <?= pv($c, 'insurance_company') ?>. يتحمل المستأجر مبلغ <?= pv($c, 'deductible_amount') ?> عن كل حادث. لا يشمل التأمين أضرار الإهمال أو مخالفة العقد.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 7: غرامة التأخير في الإرجاع — Clause 7: Late Return Penalty</h3>
-        <p>Return after the agreed time without prior written notice incurs <?= pv($c, 'late_penalty_amount') ?> per <?= penum($c, 'late_penalty_unit') ?> of delay, and is deemed a breach of this agreement.</p>
-        <p dir="rtl">عند التأخر عن الإرجاع دون إشعار كتابي مسبق، يُحتسب عن كل <?= penum($c, 'late_penalty_unit') ?> تأخير مبلغ <?= pv($c, 'late_penalty_amount') ?>، ويُعد ذلك خرقًا للعقد.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 8: فحص حالة السيارة — Clause 8: Vehicle Condition Inspection</h3>
-        <table class="inspection-table">
-            <thead>
-                <tr>
-                    <th>البند / Item</th>
-                    <th>عند التسليم / At Handover</th>
-                    <th>عند الاستلام / At Return</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-            $inspectionItems = [
-                'body_paint'    => 'الهيكل والطلاء / Body &amp; paint',
-                'glass_mirrors' => 'الزجاج والمرايا / Glass &amp; mirrors',
-                'tyres_rims'    => 'الإطارات والجنوط / Tyres &amp; rims',
-                'lights'        => 'الأضواء / Lights',
-                'interior'      => 'المقصورة الداخلية / Interior',
-                'accessories'   => 'الأدوات والملحقات / Accessories &amp; tools',
-            ];
-            foreach ($inspectionItems as $key => $label):
-            ?>
-                <tr>
-                    <td><?= $label ?></td>
-                    <td><?= pv($c, 'insp_' . $key . '_handover') ?></td>
-                    <td><?= pv($c, 'insp_' . $key . '_return') ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </section>
-
-    <section class="clause">
-        <h3>البند 9: الإلغاء وإنهاء العقد — Clause 9: Cancellation &amp; Termination</h3>
-        <p>Either party may terminate before the end date with <?= pv($c, 'cancellation_notice_period') ?> prior written notice. The Lessor may terminate immediately and repossess the vehicle without notice if the Renter breaches any term herein.</p>
-        <p dir="rtl">يجوز لأي طرف إنهاء العقد قبل الموعد المحدد بإشعار كتابي مسبق مدته <?= pv($c, 'cancellation_notice_period') ?>. ويحق للمؤجر فسخ العقد فورًا واستعادة السيارة دون إشعار عند مخالفة المستأجر لأي بند.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 10: القانون الحاكم وتسوية النزاعات — Clause 10: Governing Law &amp; Disputes</h3>
-        <p>This agreement is governed by and construed in accordance with the laws of the <strong>State of Qatar</strong>. Disputes shall first be resolved amicably; failing that, referred to the competent courts of the State of Qatar.</p>
-        <p dir="rtl">يخضع هذا العقد ويُفسَّر وفقًا لأنظمة <strong>دولة قطر</strong>. وفي حال نشوء نزاع يسعى الطرفان لحله وديًا، وعند التعذر يُرفع النزاع إلى المحاكم المختصة في دولة قطر.</p>
-    </section>
-
-    <section class="clause">
-        <h3>البند 11: أحكام عامة — Clause 11: General Provisions</h3>
-        <ul class="bilingual-list">
-            <li><span>This agreement and its annexes form one indivisible document.</span><span dir="rtl">يُعتبر هذا العقد وملحقاته وثيقة واحدة لا تتجزأ.</span></li>
-            <li><span>No term may be amended except by written consent of both parties.</span><span dir="rtl">لا يجوز تعديل أي بند إلا بموافقة خطية من الطرفين.</span></li>
-            <li><span>Executed in two original copies, one for each party.</span><span dir="rtl">حُرر من نسختين أصليتين، بيد كل طرف نسخة للعمل بموجبها.</span></li>
-        </ul>
-    </section>
-
-    <section class="signatures">
-        <h3>التوقيعات — Signatures</h3>
-        <div class="sig-grid">
-            <div class="sig-block">
-                <h4>First Party (Lessor) — الطرف الأول (المؤجر)</h4>
-                <p>Name / الاسم: <?= pv($c, 'lessor_sign_name') ?></p>
-                <p>Signature / التوقيع: <span class="blank sig-line">&nbsp;</span></p>
-                <p>Date / التاريخ: <?= pdate($c, 'lessor_sign_date') ?></p>
-                <p>Company Stamp / الختم: <span class="blank sig-line">&nbsp;</span></p>
-            </div>
-            <div class="sig-block">
-                <h4>Second Party (Renter) — الطرف الثاني (المستأجر)</h4>
-                <p>Name / الاسم: <?= pv($c, 'renter_sign_name') ?></p>
-                <p>Signature / التوقيع: <span class="blank sig-line">&nbsp;</span></p>
-                <p>Date / التاريخ: <?= pdate($c, 'renter_sign_date') ?></p>
-            </div>
+    <div class="sig-row" dir="ltr">
+        <div class="sig-block">
+            <span class="label">Second Party Signature<br>إمضاء الطرف الثاني</span>
+            <span class="sig-line">&nbsp;</span>
         </div>
-    </section>
+        <div class="sig-block">
+            <span class="label">First Party Signature<br>إمضاء الطرف الأول</span>
+            <span class="sig-line">&nbsp;</span>
+        </div>
+    </div>
+
+    <img src="assets/img/footer-bar.png" alt="Al Musafir for Car Rental — Tel: +974 3330 7747" class="logo-footer">
 
 </article>
 </body>

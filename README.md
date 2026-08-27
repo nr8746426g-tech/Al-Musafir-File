@@ -25,6 +25,8 @@ every contract in MySQL, and renders a print-ready copy of each one.
    ```
 
    This creates the `al_musafir_contracts` database and the `contracts` table.
+   ⚠️ **`schema.sql` drops and recreates the `contracts` table** — re-running it
+   after a redesign erases any contracts saved under the old structure.
 
 2. **اضبط بيانات الاتصال / Configure the DB connection** via environment
    variables (recommended) or by editing `config.php` directly:
@@ -57,29 +59,41 @@ every contract in MySQL, and renders a print-ready copy of each one.
 | `contracts.php` | Lists/searches saved contracts, with links to view, edit, or delete |
 | `delete.php` | Deletes a contract (POST only) |
 
+## نموذج العقد / Contract template
+
+هذا الموقع يطابق نموذج "CAR RENTAL AGREEMENT / عقد إيجار سيارة" (10 بنود)
+الذي زوّدتنا به الشركة: الطرف الأول = المستأجر (العميل)، الطرف الثاني =
+المؤجر (شركة المسافر، ثابت). البنود 4–10 نصوص ثابتة بدون حقول؛ الحقول
+القابلة للتعبئة موجودة فقط بالبنود 1–3 (السيارة، مدة الإيجار، التأمين).
+
+This site matches the "CAR RENTAL AGREEMENT / عقد إيجار سيارة" (10
+articles) template supplied by the company: First Party = Lessee (the
+customer), Second Party = Lessor (Al Musafir, fixed). Articles 4–10 are
+fixed boilerplate text with no fields; fillable fields only appear in
+Articles 1–3 (vehicle, rental period, deposit).
+
 ## كيف يعمل / How it works
 
-- كل حقول العقد (الأطراف، بيانات السيارة، البنود 1–11، فحص السيارة،
-  التوقيعات) معرّفة في مكان واحد فقط: `fields.php`. هذا الملف يحدد نوع كل
-  حقل (نص/تاريخ/وقت/رقم/قائمة) ويُستخدم في التحقق من صحة البيانات والحفظ.
+- كل حقول العقد معرّفة في مكان واحد فقط: `fields.php`. هذا الملف يحدد نوع
+  كل حقل (نص/تاريخ/وقت/رقم/قائمة) ويُستخدم في التحقق من صحة البيانات والحفظ.
 - `save.php` يتحقق من البيانات حسب `fields.php` ثم يدرج/يحدّث السجل عبر
   PDO prepared statements (حماية من SQL injection).
 - `view.php` يعيد بناء نص العقد الأصلي بالعربية والإنجليزية مع إدراج
-  القيم المحفوظة مكان الفراغات؛ أي حقل لم يُعبأ يظهر كخط فارغ ليُكتب يدويًا،
-  تمامًا كما في النموذج الأصلي القابل للتعبئة.
+  القيم المحفوظة مكان الفراغات (تحت شعار وتذييل الشركة الفعليين)؛ أي حقل
+  لم يُعبأ يظهر كخط فارغ ليُكتب يدويًا، تمامًا كما في النموذج الأصلي.
 - زر الطباعة يستخدم `window.print()` مع تنسيق طباعة (`@media print`) يخفي
   أزرار التنقل ويحافظ على تقسيم الصفحات حسب كل بند.
 
-- All contract fields (parties, vehicle, clauses 1–11, inspection table,
-  signatures) are defined once in `fields.php`, which drives both
+- All contract fields are defined once in `fields.php`, which drives both
   validation and the save logic.
 - `save.php` validates input against `fields.php`'s type rules, then
   inserts/updates via PDO prepared statements (SQL-injection safe).
 - `view.php` reconstructs the original bilingual contract text with the
-  saved values substituted in; any field left blank still prints as an
-  underline for manual completion, just like the original fillable PDF.
+  saved values substituted in (under the company's real logo and footer
+  bar); any field left blank still prints as an underline for manual
+  completion, just like the original fillable template.
 - The print button calls `window.print()`; print-specific CSS hides the
-  navigation chrome and avoids splitting a clause across a page break.
+  navigation chrome and avoids splitting a row across a page break.
 
 ## ملاحظة أمنية / Security note
 

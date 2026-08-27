@@ -6,15 +6,15 @@ $q = trim((string) ($_GET['q'] ?? ''));
 
 if ($q !== '') {
     $stmt = get_db()->prepare(
-        'SELECT id, contract_no, contract_date, renter_name, veh_plate_no, total_fee, created_at
+        'SELECT id, contract_no, lessee_name, veh_plate_no, rental_start_date, rent_paid, created_at
          FROM contracts
-         WHERE contract_no LIKE :q OR renter_name LIKE :q OR veh_plate_no LIKE :q
+         WHERE contract_no LIKE :q OR lessee_name LIKE :q OR veh_plate_no LIKE :q
          ORDER BY id DESC'
     );
     $stmt->execute(['q' => '%' . $q . '%']);
 } else {
     $stmt = get_db()->query(
-        'SELECT id, contract_no, contract_date, renter_name, veh_plate_no, total_fee, created_at
+        'SELECT id, contract_no, lessee_name, veh_plate_no, rental_start_date, rent_paid, created_at
          FROM contracts ORDER BY id DESC'
     );
 }
@@ -56,10 +56,10 @@ $contracts = $stmt->fetchAll();
             <thead>
                 <tr>
                     <th>رقم العقد<br>Contract No.</th>
-                    <th>التاريخ<br>Date</th>
-                    <th>المستأجر<br>Renter</th>
+                    <th>تاريخ البداية<br>Start Date</th>
+                    <th>المستأجر<br>Lessee</th>
                     <th>رقم اللوحة<br>Plate</th>
-                    <th>القيمة<br>Fee</th>
+                    <th>المبلغ<br>Rent Paid</th>
                     <th>إجراءات<br>Actions</th>
                 </tr>
             </thead>
@@ -67,10 +67,10 @@ $contracts = $stmt->fetchAll();
                 <?php foreach ($contracts as $row): ?>
                 <tr>
                     <td><?= h($row['contract_no']) ?></td>
-                    <td><?= h($row['contract_date']) ?></td>
-                    <td><?= h($row['renter_name']) ?></td>
+                    <td><?= h($row['rental_start_date']) ?></td>
+                    <td><?= h($row['lessee_name']) ?></td>
                     <td><?= h($row['veh_plate_no']) ?></td>
-                    <td><?= $row['total_fee'] !== null ? h($row['total_fee']) : '' ?></td>
+                    <td><?= $row['rent_paid'] !== null ? h($row['rent_paid']) : '' ?></td>
                     <td class="actions">
                         <a href="view.php?id=<?= (int) $row['id'] ?>">عرض/طباعة · View/Print</a>
                         <a href="form.php?id=<?= (int) $row['id'] ?>">تعديل · Edit</a>

@@ -58,24 +58,30 @@ function ptime(array $row, string $name): string
 }
 
 /** Human-readable label for enum-ish values, used in the printed view. */
-function label_map(string $name, string $value): string
+function label_map(string $name, string $value, string $lang = 'both'): string
 {
     $maps = [
-        'tax_status' => ['incl' => 'شاملة الضريبة / Tax incl.', 'excl' => 'غير شاملة الضريبة / Tax excl.'],
-        'payment_method' => ['cash' => 'نقدًا / Cash', 'card' => 'بطاقة بنكية / Card', 'transfer' => 'تحويل بنكي / Bank transfer'],
-        'insurance_type' => ['comprehensive' => 'شامل / Comprehensive', 'third_party' => 'ضد الغير / Third-party'],
-        'late_penalty_unit' => ['hour' => 'ساعة / hour', 'day' => 'يوم / day'],
+        'mileage_restricted' => ['yes' => ['ar' => 'نعم', 'en' => 'Yes'], 'no' => ['ar' => 'لا', 'en' => 'No']],
     ];
 
-    return $maps[$name][$value] ?? $value;
+    $entry = $maps[$name][$value] ?? null;
+    if ($entry === null) {
+        return $value;
+    }
+
+    return match ($lang) {
+        'en' => $entry['en'],
+        'ar' => $entry['ar'],
+        default => $entry['ar'] . ' / ' . $entry['en'],
+    };
 }
 
-/** Same as pv() but runs the value through label_map() first. */
-function penum(array $row, string $name): string
+/** Same as pv() but runs the value through label_map() first. Pass $lang as 'en' or 'ar' for a single-language label. */
+function penum(array $row, string $name, string $lang = 'both'): string
 {
     $v = $row[$name] ?? null;
     if (!$v) {
         return '<span class="blank">&nbsp;</span>';
     }
-    return '<span class="filled">' . h(label_map($name, $v)) . '</span>';
+    return '<span class="filled">' . h(label_map($name, $v, $lang)) . '</span>';
 }
