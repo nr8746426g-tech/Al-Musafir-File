@@ -1,10 +1,8 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+require __DIR__ . '/auth.php';
 require __DIR__ . '/helpers.php';
 require __DIR__ . '/db.php';
+require_login();
 
 $values = [];
 $errors = [];
@@ -40,16 +38,7 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="form-page">
-<header class="site-header">
-    <div class="brand">
-        <span class="brand-ar">المسافر لتأجير السيارات</span>
-        <span class="brand-en">Al Musafir for Car Rental</span>
-    </div>
-    <nav>
-        <a href="index.php">الرئيسية / Home</a>
-        <a href="contracts.php">العقود المحفوظة / Saved Contracts</a>
-    </nav>
-</header>
+<?php require __DIR__ . '/header.php'; ?>
 
 <main class="container">
     <h1><?= h($pageTitle) ?></h1>

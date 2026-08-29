@@ -1,10 +1,8 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+require __DIR__ . '/auth.php';
 require __DIR__ . '/db.php';
 require __DIR__ . '/fields.php';
+require_login();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: form.php');

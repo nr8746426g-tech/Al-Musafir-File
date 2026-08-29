@@ -1,4 +1,8 @@
-<?php require __DIR__ . '/helpers.php'; ?>
+<?php
+require __DIR__ . '/auth.php';
+require __DIR__ . '/helpers.php';
+require_login();
+?>
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -8,12 +12,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="home-page">
-<header class="site-header">
-    <div class="brand">
-        <span class="brand-ar">المسافر لتأجير السيارات</span>
-        <span class="brand-en">Al Musafir for Car Rental</span>
-    </div>
-</header>
+<?php require __DIR__ . '/header.php'; ?>
 
 <main class="container home-hero">
     <h1>نظام عقود تأجير السيارات<br><span class="en">Car Rental Contract System</span></h1>

@@ -8,6 +8,23 @@ CREATE DATABASE IF NOT EXISTS al_musafir_contracts
 
 USE al_musafir_contracts;
 
+-- Login accounts. The first admin account is seeded below with
+-- username "Yazan Manager" / password "Admin@112233" — change the
+-- password after first login (there's no in-app "change password"
+-- yet; ask for it to be added, or update it directly via phpMyAdmin
+-- using PHP's password_hash()).
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin','staff') NOT NULL DEFAULT 'staff',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_username (username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO users (username, password_hash, role)
+VALUES ('Yazan Manager', '$2y$12$qtjHXa0mKQQZ4VqlFjHH8.RXqoTAkNy6PRNPeasNwEL1EONCDNWWu', 'admin');
+
 DROP TABLE IF EXISTS contracts;
 
 CREATE TABLE contracts (

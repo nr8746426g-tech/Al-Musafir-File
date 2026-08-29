@@ -1,5 +1,7 @@
 <?php
+require __DIR__ . '/auth.php';
 require __DIR__ . '/db.php';
+require_admin();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: contracts.php');

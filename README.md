@@ -24,9 +24,14 @@ every contract in MySQL, and renders a print-ready copy of each one.
    mysql -u root -p < schema.sql
    ```
 
-   This creates the `al_musafir_contracts` database and the `contracts` table.
+   This creates the `al_musafir_contracts` database, the `contracts` table,
+   the `users` (login accounts) table, and a first admin account.
    ⚠️ **`schema.sql` drops and recreates the `contracts` table** — re-running it
    after a redesign erases any contracts saved under the old structure.
+
+   **If you already have a live database** (contracts saved) and only need
+   to add logins to it, run `migration_add_users.sql` instead — it only
+   creates the `users` table and does not touch `contracts`.
 
 2. **اضبط بيانات الاتصال / Configure the DB connection** via environment
    variables (recommended) or by editing `config.php` directly:
@@ -48,16 +53,39 @@ every contract in MySQL, and renders a print-ready copy of each one.
    Then open <http://localhost:8000/> — or point Apache/Nginx's document
    root at this folder for a production deployment.
 
+## تسجيل الدخول / Login
+
+كل صفحات الموقع محمية بتسجيل دخول. أول حساب أدمن يتزرع تلقائيًا من
+`schema.sql` (أو `migration_add_users.sql`):
+
+- **اسم المستخدم / Username:** `Yazan Manager`
+- **كلمة المرور / Password:** `Admin@112233`
+
+سجّل دخول وروح صفحة **المستخدمون / Users** (بالقائمة العلوية، تظهر للأدمن
+بس) لإضافة حسابات موظفين (Staff) أو أدمن جدد. حساب **Staff** يقدر يضيف/يعدّل
+العقود بس، وحذف العقود أو إدارة المستخدمين محصور بالأدمن.
+
+Every page requires login. The first admin account is seeded automatically:
+
+- **Username:** `Yazan Manager`
+- **Password:** `Admin@112233`
+
+Log in and go to **Users** (top nav, admin-only) to add staff or admin
+accounts. A **Staff** account can create/edit contracts; deleting contracts
+and managing users is admin-only.
+
 ## الصفحات / Pages
 
 | Page | Purpose |
 |---|---|
+| `login.php` / `logout.php` | Session-based login/logout |
+| `users.php` / `delete_user.php` | Admin-only: add/list/delete login accounts |
 | `index.php` | Landing page — links to a new contract or the saved list |
 | `form.php` | Fillable data-entry form for all contract fields (add `?id=` to edit an existing contract) |
 | `save.php` | Validates the submission and inserts/updates the `contracts` table |
 | `view.php?id=` | Renders the saved contract in the original bilingual layout with a **Print** button |
-| `contracts.php` | Lists/searches saved contracts, with links to view, edit, or delete |
-| `delete.php` | Deletes a contract (POST only) |
+| `contracts.php` | Lists/searches saved contracts, with links to view, edit, or (admin-only) delete |
+| `delete.php` | Deletes a contract (POST only, admin-only) |
 
 ## نموذج العقد / Contract template
 

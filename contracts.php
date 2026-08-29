@@ -1,6 +1,8 @@
 <?php
+require __DIR__ . '/auth.php';
 require __DIR__ . '/helpers.php';
 require __DIR__ . '/db.php';
+require_login();
 
 $q = trim((string) ($_GET['q'] ?? ''));
 
@@ -29,16 +31,7 @@ $contracts = $stmt->fetchAll();
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="list-page">
-<header class="site-header">
-    <div class="brand">
-        <span class="brand-ar">المسافر لتأجير السيارات</span>
-        <span class="brand-en">Al Musafir for Car Rental</span>
-    </div>
-    <nav>
-        <a href="index.php">الرئيسية / Home</a>
-        <a href="form.php">عقد جديد / New Contract</a>
-    </nav>
-</header>
+<?php require __DIR__ . '/header.php'; ?>
 
 <main class="container">
     <h1>العقود المحفوظة / Saved Contracts</h1>
@@ -74,10 +67,12 @@ $contracts = $stmt->fetchAll();
                     <td class="actions">
                         <a href="view.php?id=<?= (int) $row['id'] ?>">عرض/طباعة · View/Print</a>
                         <a href="form.php?id=<?= (int) $row['id'] ?>">تعديل · Edit</a>
+                        <?php if (is_admin()): ?>
                         <form action="delete.php" method="post" onsubmit="return confirm('هل أنت متأكد من الحذف؟ / Delete this contract?');" class="inline-form">
                             <input type="hidden" name="id" value="<?= (int) $row['id'] ?>">
                             <button type="submit" class="link-danger">حذف · Delete</button>
                         </form>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

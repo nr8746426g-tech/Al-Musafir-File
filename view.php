@@ -1,6 +1,8 @@
 <?php
+require __DIR__ . '/auth.php';
 require __DIR__ . '/helpers.php';
 require __DIR__ . '/db.php';
+require_login();
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $stmt = get_db()->prepare('SELECT * FROM contracts WHERE id = ?');
