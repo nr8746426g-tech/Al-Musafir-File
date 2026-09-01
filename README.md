@@ -31,7 +31,9 @@ every contract in MySQL, and renders a print-ready copy of each one.
 
    **If you already have a live database** (contracts saved) and only need
    to add logins to it, run `migration_add_users.sql` instead — it only
-   creates the `users` table and does not touch `contracts`.
+   creates the `users` table and does not touch `contracts`. Likewise,
+   `migration_add_settings.sql` adds just the `settings` table (contract
+   numbering) without touching `contracts` or `users`.
 
 2. **اضبط بيانات الاتصال / Configure the DB connection** via environment
    variables (recommended) or by editing `config.php` directly:
@@ -80,6 +82,7 @@ and managing users is admin-only.
 |---|---|
 | `login.php` / `logout.php` | Session-based login/logout |
 | `users.php` / `delete_user.php` | Admin-only: add/list/delete login accounts |
+| `settings.php` | Admin-only: view/set the next contract number (`AM-YYYY-####`) |
 | `index.php` | Landing page — links to a new contract or the saved list |
 | `form.php` | Fillable data-entry form for all contract fields (add `?id=` to edit an existing contract) |
 | `save.php` | Validates the submission and inserts/updates the `contracts` table |
@@ -122,6 +125,24 @@ Articles 1–3 (vehicle, rental period, deposit).
   completion, just like the original fillable template.
 - The print button calls `window.print()`; print-specific CSS hides the
   navigation chrome and avoids splitting a row across a page break.
+
+## ترقيم العقود / Contract numbering
+
+رقم العقد (`AM-YYYY-####`) **مش مبني على رقم السجل بقاعدة البيانات** —
+بيجي من عدّاد منفصل بجدول `settings` (`next_contract_number`)، عشان:
+- حذف عقد ما بيرجّع رقمه يتكرر تلقائيًا (كل رقم يتصرف مرة وحدة بس، إلا إذا
+  الأدمن غيّره يدويًا).
+- الأدمن يقدر يحدد نقطة البداية من صفحة **الإعدادات / Settings** (مفيد لو
+  كان في عقود سابقة اتعملت يدويًا/خارج النظام قبل ما تبلشوا فيه).
+
+Contract numbers (`AM-YYYY-####`) are **not derived from the database row
+id** — they come from a separate counter in the `settings` table
+(`next_contract_number`), so:
+- Deleting a contract never silently reuses its number (each number is
+  spent once, unless the admin changes the counter manually).
+- The admin can set the starting point from the **Settings** page (handy
+  if earlier contracts were made by hand/outside the system before it
+  existed).
 
 ## ملاحظة أمنية / Security note
 

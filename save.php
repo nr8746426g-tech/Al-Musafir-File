@@ -96,9 +96,10 @@ if ($errors) {
 }
 
 // contract_no is never edited once assigned, so it's excluded from the
-// UPDATE column list; for a new contract it doesn't exist yet (it needs
-// the row's own id), so it's excluded from the INSERT too and filled in
-// right after via the id MySQL just assigned.
+// UPDATE column list; for a new contract it's assigned right after via
+// the next_contract_number() counter (see db.php) — independent of the
+// row's own id, so a deleted contract's number is never reused and the
+// admin can set the starting point via settings.php.
 $columns = array_diff(array_keys($fields), ['contract_no']);
 
 try {
@@ -116,7 +117,8 @@ try {
         $stmt->execute($clean);
         $id = (int) $pdo->lastInsertId();
 
-        $contractNo = 'AM-' . date('Y') . '-' . str_pad((string) $id, 4, '0', STR_PAD_LEFT);
+        $number = next_contract_number();
+        $contractNo = 'AM-' . date('Y') . '-' . str_pad((string) $number, 4, '0', STR_PAD_LEFT);
         $pdo->prepare('UPDATE contracts SET contract_no = ? WHERE id = ?')->execute([$contractNo, $id]);
     }
 } catch (PDOException $e) {

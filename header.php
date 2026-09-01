@@ -17,6 +17,7 @@ $me = current_user();
         <a href="contracts.php">العقود المحفوظة / Saved Contracts</a>
         <?php if (is_admin()): ?>
             <a href="users.php">المستخدمون / Users</a>
+            <a href="settings.php">الإعدادات / Settings</a>
         <?php endif; ?>
         <span style="margin-inline-start:18px; opacity:0.85;"><?= h($me['username']) ?></span>
         <a href="logout.php">خروج / Logout</a>
