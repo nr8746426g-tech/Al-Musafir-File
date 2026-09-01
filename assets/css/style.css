@@ -236,7 +236,12 @@ input[readonly] { background: #eef2f5; color: #5c6b78; }
 @media print {
     .no-print, .toolbar, .site-header, .site-footer { display: none !important; }
     html, body { background: #fff !important; height: auto !important; }
-    .contract-sheet { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+    .contract-sheet { box-shadow: none; border: none; margin: 0; padding: 0 0 11%; max-width: 100%; }
     .party-table, .articles-table tr, .sig-row { break-inside: avoid; }
+    /* Repeats the contact-info bar at the bottom of every printed page;
+       the big letterhead logo stays flow-positioned (page 1 only), as
+       is conventional for multi-page letters/contracts. The bottom
+       padding above reserves room so page content never runs under it. */
+    .logo-footer { position: fixed; bottom: 0; left: 0; right: 0; margin: 0; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
