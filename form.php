@@ -150,7 +150,7 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
             <legend>البند 3: مبلغ التأمين / Article 3: Security Deposit</legend>
             <div class="grid grid-2">
                 <label>مبلغ التأمين المدفوع (ر.ق) / Security Deposit Paid (QAR)
-                    <input type="number" step="0.01" name="security_deposit" value="<?= val($values, 'security_deposit') ?>">
+                    <input type="number" step="1" name="security_deposit" value="<?= val($values, 'security_deposit') ?>">
                 </label>
             </div>
             <p class="hint">البنود 4 إلى 10 نصوص ثابتة بالعقد ولا تحتاج تعبئة. / Articles 4-10 are fixed contract text and need no input.</p>

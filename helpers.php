@@ -35,6 +35,16 @@ function pv(array $row, string $name): string
     return '<span class="filled">' . h($v) . '</span>';
 }
 
+/** Same as pv() but drops decimals — for amounts that are always a round figure (e.g. the fixed deposit). */
+function pmoney_whole(array $row, string $name): string
+{
+    $v = $row[$name] ?? null;
+    if ($v === null || $v === '') {
+        return '<span class="blank">&nbsp;</span>';
+    }
+    return '<span class="filled">' . h((string) (int) round((float) $v)) . '</span>';
+}
+
 /** Same as pv() but formats a Y-m-d date as d/m/Y. */
 function pdate(array $row, string $name): string
 {

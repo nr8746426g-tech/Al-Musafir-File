@@ -123,12 +123,12 @@ if (!$c) {
                 <td class="en">
                     <strong class="art-title">Article 3</strong><br>
                     This agreement may only be renewed by a new agreement.<br>
-                    Security deposit paid: QAR <?= pv($c, 'security_deposit') ?>
+                    Security deposit paid: QAR <?= pmoney_whole($c, 'security_deposit') ?>
                 </td>
                 <td class="ar">
                     <strong class="art-title">البند الثالث</strong><br>
                     لا يُجدَّد هذا العقد إلا بعقد آخر.<br>
-                    مبلغ التأمين المدفوع: <?= pv($c, 'security_deposit') ?> ريال قطري.
+                    مبلغ التأمين المدفوع: <?= pmoney_whole($c, 'security_deposit') ?> ريال قطري.
                 </td>
             </tr>
             <tr>
