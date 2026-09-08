@@ -35,7 +35,7 @@ function pv(array $row, string $name): string
     return '<span class="filled">' . h($v) . '</span>';
 }
 
-/** Same as pv() but drops decimals — for amounts that are always a round figure (e.g. the fixed deposit). */
+/** Same as pv() but drops decimals — money amounts here are always whole QAR. */
 function pmoney_whole(array $row, string $name): string
 {
     $v = $row[$name] ?? null;

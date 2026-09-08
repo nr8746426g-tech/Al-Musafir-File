@@ -63,7 +63,7 @@ $contracts = $stmt->fetchAll();
                     <td><?= h($row['rental_start_date']) ?></td>
                     <td><?= h($row['lessee_name']) ?></td>
                     <td><?= h($row['veh_plate_no']) ?></td>
-                    <td><?= $row['rent_paid'] !== null ? h($row['rent_paid']) : '' ?></td>
+                    <td><?= pmoney_whole($row, 'rent_paid') ?></td>
                     <td class="actions">
                         <a href="view.php?id=<?= (int) $row['id'] ?>">عرض/طباعة · View/Print</a>
                         <a href="form.php?id=<?= (int) $row['id'] ?>">تعديل · Edit</a>

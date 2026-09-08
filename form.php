@@ -127,7 +127,7 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
                     <input type="number" name="rental_days" value="<?= val($values, 'rental_days') ?>">
                 </label>
                 <label>المبلغ المدفوع (ر.ق) / Rent Paid (QAR)
-                    <input type="number" step="0.01" name="rent_paid" value="<?= val($values, 'rent_paid') ?>">
+                    <input type="number" step="1" name="rent_paid" value="<?= val($values, 'rent_paid') ?>">
                 </label>
                 <label></label>
                 <label>تاريخ البداية / Start Date <span class="req">*</span>

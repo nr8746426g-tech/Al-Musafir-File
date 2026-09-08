@@ -108,13 +108,13 @@ if (!$c) {
             <tr>
                 <td class="en">
                     <strong class="art-title">Article 2</strong><br>
-                    Rental period: <?= pv($c, 'rental_days') ?> day(s). Rent paid: QAR <?= pv($c, 'rent_paid') ?><br>
+                    Rental period: <?= pv($c, 'rental_days') ?> day(s). Rent paid: QAR <?= pmoney_whole($c, 'rent_paid') ?><br>
                     From <?= ptime($c, 'rental_start_time') ?> until <?= ptime($c, 'rental_end_time') ?> of <?= pdate($c, 'rental_start_date') ?><br>
                     The agreement ends on <?= pdate($c, 'rental_end_date') ?> at the close of the final hour.
                 </td>
                 <td class="ar">
                     <strong class="art-title">البند الثاني</strong><br>
-                    مدة الإيجار: <?= pv($c, 'rental_days') ?> يوم. المبلغ المدفوع: <?= pv($c, 'rent_paid') ?> ريال قطري.<br>
+                    مدة الإيجار: <?= pv($c, 'rental_days') ?> يوم. المبلغ المدفوع: <?= pmoney_whole($c, 'rent_paid') ?> ريال قطري.<br>
                     تبدأ من الساعة <?= ptime($c, 'rental_start_time') ?> حتى الساعة <?= ptime($c, 'rental_end_time') ?> من يوم <?= pdate($c, 'rental_start_date') ?><br>
                     وينتهي العقد بتاريخ <?= pdate($c, 'rental_end_date') ?> عند انتهاء الساعة الأخيرة.
                 </td>
