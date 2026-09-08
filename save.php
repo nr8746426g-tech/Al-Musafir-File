@@ -61,7 +61,9 @@ foreach ($fields as $name => $spec) {
                 $errors[] = "قيمة رقمية غير صالحة في الحقل \"$name\" / Invalid number for \"$name\".";
                 $clean[$name] = null;
             } else {
-                $clean[$name] = (float) $raw;
+                // Money fields here are always whole QAR — round on save so the
+                // stored value matches what's shown everywhere (see pmoney_whole()).
+                $clean[$name] = (int) round((float) $raw);
             }
             break;
 
