@@ -166,5 +166,13 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
 <footer class="site-footer">
     <p>Al Musafir for Car Rental — Tel: +974 3330 7747</p>
 </footer>
+
+<script>
+// Prevent the mouse-wheel from silently changing a number field's value
+// when the cursor happens to be resting over it while scrolling the page.
+document.querySelectorAll('input[type="number"]').forEach(function (el) {
+    el.addEventListener('wheel', function () { el.blur(); }, { passive: true });
+});
+</script>
 </body>
 </html>
