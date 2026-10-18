@@ -110,15 +110,25 @@ if (!$c) {
                     <strong class="art-title">Article 2</strong><br>
                     Rental period: <?= pv($c, 'rental_days') ?> day(s). Rent paid: QAR <?= pmoney_whole($c, 'rent_paid') ?><br>
                     <?= ppayment($c, 'en') ?><br>
+<?php if (($c['open_ended'] ?? '') === 'yes'): ?>
+                    From <?= ptime($c, 'rental_start_time') ?> of <?= pdate($c, 'rental_start_date') ?><br>
+                    Open-ended rental: no fixed end date.
+<?php else: ?>
                     From <?= ptime($c, 'rental_start_time') ?> until <?= ptime($c, 'rental_end_time') ?> of <?= pdate($c, 'rental_start_date') ?><br>
                     The agreement ends on <?= pdate($c, 'rental_end_date') ?> at the close of the final hour.
+<?php endif; ?>
                 </td>
                 <td class="ar">
                     <strong class="art-title">البند الثاني</strong><br>
                     مدة الإيجار: <?= pv($c, 'rental_days') ?> يوم. المبلغ المدفوع: <?= pmoney_whole($c, 'rent_paid') ?> ريال قطري.<br>
                     <?= ppayment($c, 'ar') ?><br>
+<?php if (($c['open_ended'] ?? '') === 'yes'): ?>
+                    تبدأ من الساعة <?= ptime($c, 'rental_start_time') ?> من يوم <?= pdate($c, 'rental_start_date') ?><br>
+                    العقد مفتوح المدة: بدون تاريخ انتهاء محدد.
+<?php else: ?>
                     تبدأ من الساعة <?= ptime($c, 'rental_start_time') ?> حتى الساعة <?= ptime($c, 'rental_end_time') ?> من يوم <?= pdate($c, 'rental_start_date') ?><br>
                     وينتهي العقد بتاريخ <?= pdate($c, 'rental_end_date') ?> عند انتهاء الساعة الأخيرة.
+<?php endif; ?>
                 </td>
             </tr>
             <tr>

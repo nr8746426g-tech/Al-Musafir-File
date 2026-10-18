@@ -154,11 +154,15 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
                     <input type="time" name="rental_start_time" value="<?= val($values, 'rental_start_time') ?>">
                 </label>
                 <label></label>
-                <label>تاريخ الانتهاء / End Date <span class="req">*</span>
+                <label class="end-field">تاريخ الانتهاء / End Date <span class="req">*</span>
                     <input type="date" name="rental_end_date" value="<?= val($values, 'rental_end_date') ?>" required>
                 </label>
-                <label>الساعة / End Time
+                <label class="end-field">الساعة / End Time
                     <input type="time" name="rental_end_time" value="<?= val($values, 'rental_end_time') ?>">
+                </label>
+                <label class="check-field">
+                    <span>عقد مفتوح المدة / Open-ended rental</span>
+                    <input type="checkbox" name="open_ended" id="open_ended" value="yes" <?= (($values['open_ended'] ?? '') === 'yes') ? 'checked' : '' ?>>
                 </label>
             </div>
         </fieldset>
@@ -200,6 +204,17 @@ document.querySelectorAll('input[type="number"]').forEach(function (el) {
         fields.forEach(function (el) { el.style.display = show ? '' : 'none'; });
     }
     method.addEventListener('change', toggle);
+    toggle();
+})();
+
+// Hide the end date/time when the rental is open-ended.
+(function () {
+    var open = document.getElementById('open_ended');
+    var fields = document.querySelectorAll('.end-field');
+    function toggle() {
+        fields.forEach(function (el) { el.style.display = open.checked ? 'none' : ''; });
+    }
+    open.addEventListener('change', toggle);
     toggle();
 })();
 </script>

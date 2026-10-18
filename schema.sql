@@ -75,7 +75,8 @@ CREATE TABLE contracts (
     cheque_date DATE NULL,
     rental_start_date DATE NOT NULL,
     rental_start_time TIME NULL,
-    rental_end_date DATE NOT NULL,
+    open_ended ENUM('yes') NULL,
+    rental_end_date DATE NULL,
     rental_end_time TIME NULL,
 
     -- Article 3: Security deposit

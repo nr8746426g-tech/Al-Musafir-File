@@ -134,6 +134,9 @@ input, select, textarea {
 }
 input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: 1px; }
 input[readonly] { background: #eef2f5; color: #5c6b78; }
+/* A label that wraps a single checkbox: checkbox beside its text, not stacked. */
+label.check-field { flex-direction: row; align-items: center; gap: 10px; align-self: end; padding-bottom: 8px; }
+label.check-field input[type="checkbox"] { width: 20px; height: 20px; padding: 0; }
 
 .inspection-input-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
 .inspection-input-table th, .inspection-input-table td { border: 1px solid var(--border); padding: 8px; }

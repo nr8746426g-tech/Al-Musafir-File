@@ -40,6 +40,10 @@ function contract_fields(): array
         'cheque_date'       => ['type' => 'date'],
         'rental_start_date' => ['type' => 'date', 'required' => true],
         'rental_start_time' => ['type' => 'time'],
+        // Open-ended rental: when ticked, the end date/time are not required
+        // and are cleared on save (see save.php), and the printed contract
+        // says "open-ended" instead of an end date.
+        'open_ended'        => ['type' => 'enum', 'options' => ['yes']],
         'rental_end_date'   => ['type' => 'date', 'required' => true],
         'rental_end_time'   => ['type' => 'time'],
 

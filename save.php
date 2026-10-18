@@ -15,6 +15,9 @@ $fields = contract_fields();
 $errors = [];
 $clean = [];
 
+// Open-ended rental: no end date/time is needed (see fields.php).
+$openEnded = (($_POST['open_ended'] ?? '') === 'yes');
+
 foreach ($fields as $name => $spec) {
     // contract_no is server-generated (see below), never taken from the form.
     if ($name === 'contract_no') {
@@ -24,7 +27,7 @@ foreach ($fields as $name => $spec) {
     $raw = isset($_POST[$name]) ? trim((string) $_POST[$name]) : '';
 
     if ($raw === '') {
-        if (!empty($spec['required'])) {
+        if (!empty($spec['required']) && !($openEnded && $name === 'rental_end_date')) {
             $errors[] = "الحقل \"$name\" مطلوب / \"$name\" is required.";
         }
         $clean[$name] = null;
@@ -88,6 +91,12 @@ foreach ($fields as $name => $spec) {
         default:
             $clean[$name] = $raw;
     }
+}
+
+// An open-ended contract has no end date/time — drop any left in the form.
+if ($openEnded) {
+    $clean['rental_end_date'] = null;
+    $clean['rental_end_time'] = null;
 }
 
 // Cheque details only make sense when the payment method is a cheque —
