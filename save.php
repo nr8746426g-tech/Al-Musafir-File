@@ -90,6 +90,14 @@ foreach ($fields as $name => $spec) {
     }
 }
 
+// Cheque details only make sense when the payment method is a cheque —
+// drop them otherwise so stale values never get saved or printed.
+if (($clean['payment_method'] ?? null) !== 'cheque') {
+    $clean['cheque_no'] = null;
+    $clean['cheque_bank'] = null;
+    $clean['cheque_date'] = null;
+}
+
 if ($errors) {
     $_SESSION['form_errors'] = $errors;
     $_SESSION['form_values'] = $_POST;

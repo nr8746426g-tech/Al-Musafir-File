@@ -33,6 +33,11 @@ function contract_fields(): array
         // Article 2: Rental period
         'rental_days'       => ['type' => 'int'],
         'rent_paid'         => ['type' => 'decimal'],
+        'payment_method'    => ['type' => 'enum', 'options' => ['cash', 'cheque', 'transfer', 'card']],
+        // Cheque details — only kept when payment_method = 'cheque' (see save.php).
+        'cheque_no'         => ['type' => 'text'],
+        'cheque_bank'       => ['type' => 'text'],
+        'cheque_date'       => ['type' => 'date'],
         'rental_start_date' => ['type' => 'date', 'required' => true],
         'rental_start_time' => ['type' => 'time'],
         'rental_end_date'   => ['type' => 'date', 'required' => true],

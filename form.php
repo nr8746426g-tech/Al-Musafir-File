@@ -129,7 +129,24 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
                 <label>المبلغ المدفوع (ر.ق) / Rent Paid (QAR)
                     <input type="number" step="1" name="rent_paid" value="<?= val($values, 'rent_paid') ?>">
                 </label>
-                <label></label>
+                <label>طريقة الدفع / Payment Method
+                    <select name="payment_method" id="payment_method">
+                        <option value="">—</option>
+                        <option value="cash" <?= sel($values, 'payment_method', 'cash') ?>>نقدًا / Cash</option>
+                        <option value="cheque" <?= sel($values, 'payment_method', 'cheque') ?>>شيك / Cheque</option>
+                        <option value="transfer" <?= sel($values, 'payment_method', 'transfer') ?>>تحويل بنكي / Bank transfer</option>
+                        <option value="card" <?= sel($values, 'payment_method', 'card') ?>>بطاقة / Card</option>
+                    </select>
+                </label>
+                <label class="cheque-field">رقم الشيك / Cheque No.
+                    <input type="text" name="cheque_no" value="<?= val($values, 'cheque_no') ?>">
+                </label>
+                <label class="cheque-field">البنك / Bank
+                    <input type="text" name="cheque_bank" value="<?= val($values, 'cheque_bank') ?>">
+                </label>
+                <label class="cheque-field">تاريخ الشيك / Cheque Date
+                    <input type="date" name="cheque_date" value="<?= val($values, 'cheque_date') ?>">
+                </label>
                 <label>تاريخ البداية / Start Date <span class="req">*</span>
                     <input type="date" name="rental_start_date" value="<?= val($values, 'rental_start_date') ?>" required>
                 </label>
@@ -173,6 +190,18 @@ $pageTitle = $id ? 'تعديل العقد / Edit Contract' : 'عقد جديد / 
 document.querySelectorAll('input[type="number"]').forEach(function (el) {
     el.addEventListener('wheel', function () { el.blur(); }, { passive: true });
 });
+
+// Show the cheque fields only when the payment method is "cheque".
+(function () {
+    var method = document.getElementById('payment_method');
+    var fields = document.querySelectorAll('.cheque-field');
+    function toggle() {
+        var show = method.value === 'cheque';
+        fields.forEach(function (el) { el.style.display = show ? '' : 'none'; });
+    }
+    method.addEventListener('change', toggle);
+    toggle();
+})();
 </script>
 </body>
 </html>

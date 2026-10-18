@@ -72,6 +72,12 @@ function label_map(string $name, string $value, string $lang = 'both'): string
 {
     $maps = [
         'mileage_restricted' => ['yes' => ['ar' => 'نعم', 'en' => 'Yes'], 'no' => ['ar' => 'لا', 'en' => 'No']],
+        'payment_method' => [
+            'cash'     => ['ar' => 'نقدًا', 'en' => 'Cash'],
+            'cheque'   => ['ar' => 'شيك', 'en' => 'Cheque'],
+            'transfer' => ['ar' => 'تحويل بنكي', 'en' => 'Bank transfer'],
+            'card'     => ['ar' => 'بطاقة', 'en' => 'Card'],
+        ],
     ];
 
     $entry = $maps[$name][$value] ?? null;
@@ -94,4 +100,24 @@ function penum(array $row, string $name, string $lang = 'both'): string
         return '<span class="blank">&nbsp;</span>';
     }
     return '<span class="filled">' . h(label_map($name, $v, $lang)) . '</span>';
+}
+
+/**
+ * Printed payment-method sentence for Article 2. Always shows the method
+ * (blank underline if not chosen); for cheques it also shows the cheque
+ * number, bank and date. $lang is 'en' or 'ar'.
+ */
+function ppayment(array $row, string $lang): string
+{
+    $label = $lang === 'ar' ? 'طريقة الدفع: ' : 'Payment method: ';
+    $out = $label . penum($row, 'payment_method', $lang);
+
+    if (($row['payment_method'] ?? '') === 'cheque') {
+        $parts = $lang === 'ar'
+            ? ['رقم الشيك: ' . pv($row, 'cheque_no'), 'البنك: ' . pv($row, 'cheque_bank'), 'تاريخ الشيك: ' . pdate($row, 'cheque_date')]
+            : ['Cheque No.: ' . pv($row, 'cheque_no'), 'Bank: ' . pv($row, 'cheque_bank'), 'Cheque date: ' . pdate($row, 'cheque_date')];
+        $out .= ' (' . implode('، ', $parts) . ')';
+    }
+
+    return $out;
 }

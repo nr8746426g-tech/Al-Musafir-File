@@ -69,6 +69,10 @@ CREATE TABLE contracts (
     -- Article 2: Rental period
     rental_days SMALLINT UNSIGNED NULL,
     rent_paid DECIMAL(10,2) NULL,
+    payment_method ENUM('cash','cheque','transfer','card') NULL,
+    cheque_no VARCHAR(50) NULL,
+    cheque_bank VARCHAR(100) NULL,
+    cheque_date DATE NULL,
     rental_start_date DATE NOT NULL,
     rental_start_time TIME NULL,
     rental_end_date DATE NOT NULL,
