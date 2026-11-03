@@ -185,7 +185,7 @@ if (!$c) {
         </div>
     </div>
 
-    <img src="assets/img/footer-bar.png" alt="Al Musafir for Car Rental — Tel: +974 3330 7747" class="logo-footer">
+    <img src="assets/img/footer-bar-updated.svg" alt="Al Musafir for Car Rental — Tel: +974 3330 7747" class="logo-footer">
 
 </article>
 </body>
