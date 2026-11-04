@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1331" height="99" viewBox="0 0 1331 99" role="img" aria-label="Al Musafir contact details: Tel. +974 3330 7747, Email info@almusafir.qa, Doha - Qatar">
   <rect width="1331" height="99" fill="#ffffff"/>
   <path d="M16 26H1315" stroke="#063e92" stroke-width="5"/>
-  <g fill="#073d8b" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">
-    <text x="57" y="69">Tel.: +974 3330 7747</text>
-    <text x="352" y="69">Email: info@almusafir.qa</text>
-    <text x="852" y="69">Doha - Qatar</text>
+  <g fill="#073d8b" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">
+    <text x="190" y="69">Tel.: +974 3330 7747</text>
+    <text x="665.5" y="69">Email: info@almusafir.qa</text>
+    <text x="1130" y="69">Doha - Qatar</text>
   </g>
-  <path d="M337 43V77M832 43V77" stroke="#073d8b" stroke-width="3"/>
+  <path d="M380 43V77M950 43V77" stroke="#073d8b" stroke-width="3"/>
 </svg>
